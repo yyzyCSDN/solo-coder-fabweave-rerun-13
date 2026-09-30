@@ -7,6 +7,15 @@ maintenance, chamber matching, holds, genealogy, chemical aging, cleanroom
 excursions, demand control, rework, lot merging, equipment dedication,
 contamination, takt, route yield and shipment commitments.
 
+A bitemporal capacity calendar stacks line shutdowns, holidays, shortened
+shifts and temporary overtime onto the same day.  Overlapping minutes resolve
+through an explicit precedence chain - shutdown > holiday > shortened > base
+overtime - computed on half-open minute intervals so adjacent windows never
+double-count.  Rules are append-only on two time axes (valid window versus
+recorded-at); a historical date is answered from the rule version known then,
+and late additions or corrections surface as explicit drift instead of
+silently rewriting a past answer.
+
 The cross-domain workflow layer composes these services for material
 readiness, dispatch-after-hold, qualified reservations and assignments,
 metrology/SPC gates, containment, powered scheduling, rework release,
